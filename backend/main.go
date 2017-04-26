@@ -1,23 +1,41 @@
 package main
 
 import (
-	"encoding/base64"
-	"encoding/json"
-	"errors"
+//	"encoding/base64"
+//	"encoding/json"
+//	"errors"
 	"fmt"
-	"log"
-	"math/rand"
+//	"log"
+//	"math/rand"
 	"net/http"
-	"os"
-	"strconv"
-	"time"
+   // "os"
+//	"strconv"
+//	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
+//	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
-	"github.com/odewahn/react-golang-auth/backend/handler"
+//	"github.com/joho/godotenv"
+//	"github.com/odewahn/react-golang-auth/backend/handler"
 )
+func main() {
+	userAges := map[string]int{
+		"Alice":  25,
+		"Bob":    30,
+		"Claire": 29,
+	}
 
+	r := mux.NewRouter()
+	r.HandleFunc("/users/{name}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		name := vars["name"]
+		age := userAges[name]
+
+		fmt.Fprintf(w, "%s is %d years old!", name, age)
+	}).Methods("GET")
+
+	http.ListenAndServe(":8080", r)
+}
+/*
 func myLookupKey(key string) []byte {
 	decoded, err := base64.URLEncoding.DecodeString(key)
 	if err != nil {
@@ -45,6 +63,7 @@ func hasValidToken(jwtToken, key string) bool {
 
 // FakeData provides some fake data for testing...
 func FakeData(env *handler.Env, w http.ResponseWriter, r *http.Request) error {
+	log.Println("Start work on request")
 
 	// If this is an OPTION method, then we don't do anything since it's just
 	// validating the preflight info
@@ -84,11 +103,15 @@ func FakeData(env *handler.Env, w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
+
+
 func main() {
 
+    log.Println("Load env is: ")
 	// Initialise our app-wide environment data we'll send to the handler
 	err := godotenv.Load()
 	if err != nil {
+		log.Fatal(err)
 		log.Fatal("Error loading .env file")
 	}
 
@@ -101,8 +124,17 @@ func main() {
 
 	//This returns some fake data
 	r.Handle("/data", handler.Handler{env, FakeData}).Methods("GET", "OPTIONS")
+	//r.Handle("/data", handler.Handler{env, FakeData}).Methods("GET", "OPTIONS")
 
 	port := "3001" // this is the gin port, but the app port is exposed at 3000
 	http.ListenAndServe(":"+port, r)
 
+}*/
+/*func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
 }
+
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe("127.0.0.1:8080", nil)
+}*/

@@ -1,7 +1,7 @@
 // This package is based on this great article about error handling with golang headers
 //   https://elithrar.github.io/article/http-handler-error-handling-revisited/
 
-package handler
+/*package handler
 
 import (
 	"log"
@@ -53,6 +53,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers", "x-authentication")
 
 	err := h.H(h.Env, w, r)
+	log.Printf(err)
 	if err != nil {
 		switch e := err.(type) {
 		case Error:
@@ -67,4 +68,4 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				http.StatusInternalServerError)
 		}
 	}
-}
+}*/

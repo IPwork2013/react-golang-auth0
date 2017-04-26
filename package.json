@@ -8,7 +8,7 @@
     "frontend": "npm run watch & npm run backend & npm run serve",
     "watch": "watchify -o dist/bundle.js src/main.js -dv",
     "serve": "python -m SimpleHTTPServer",
-    "backend": "cd backend; gin"
+    "backend": "cd backend; go run main.go"
   },
   "dependencies": {
     "auth0-lock": "^9.0.1",

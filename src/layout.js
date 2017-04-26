@@ -9,6 +9,7 @@ const main = React.createClass({
     this.props.dispatch({type: "logout"})
   },
   login: function() {
+    console.log('Ivan')
     this.props.dispatch(auth0Login())
   },
   render: function () {

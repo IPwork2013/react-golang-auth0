@@ -56,10 +56,13 @@ export function setDataFieldValue(key, value) {
 
 // Deletes the container record at the given index
 export function fetchData(key, n) {
+  console.log('111111111111111   '+key);
   var request = {
+    mode: 'cors',
     method: 'GET',
     headers: {
-      "x-authentication": key
+      "x-authentication": key,
+      'Access-Control-Allow-Origin':'*'
     }
   }
   return dispatch => {
